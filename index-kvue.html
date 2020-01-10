@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./kvue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{massgae}}
+        <p>{{massgae}}</p>
+        <div>
+            <div>
+                <h2>1.我的名字</h2>
+                <div>{{name}}</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const app=new Kvue({
+            el:"#app",
+            data:{
+                massgae:'测试数据',
+                name:'张三'
+            }
+        })
+
+        //console.log(app._data);
+
+        app._data.massgae='修改数据'
+        app._data.name='李四'
+    </script>
+</body>
+</html>

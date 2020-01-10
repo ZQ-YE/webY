@@ -1,3 +1,3 @@
-# vuepro
+# web study
 
-> 学习vue项目
+> 学习 vue 
