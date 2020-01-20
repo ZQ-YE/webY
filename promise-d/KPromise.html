@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script src="./js/KPromise.js"></script>
+    <script>
+        setTimeout(_=>{
+            console.log('setTimeout')
+        },0)
+
+        // resolve reject
+        // KPromise.resolve('resolve').then(val=>{
+        //     console.log('val',val)
+        // })
+        // KPromise.reject('reject').catch(val=>{
+        //     console.log('val',val)
+        // })
+
+            KPromise.race([
+                KPromise.resolve(123),
+                KPromise.resolve('kaikeba'),
+                // Promise.reject('error'),
+                new KPromise( (resolve, reject)=>{
+                    setTimeout(_=>{
+                        resolve(234234);
+                    },1000)
+                } )
+            ]).then( vals =>{
+                console.log(vals)
+            }).catch( e=>{
+                console.log('err',e)
+            })
+
+        // let p1 = new KPromise((resolve, reject) => {
+        //         console.log('Promise ');
+        //         resolve('成功的')
+        //         // reject('失败了')
+        // }).then(val=>{
+        //     console.log('val',val)
+        //     return val;
+        // }).catch(err=>{
+        //     console.log('catch',err)
+        //     return err
+        // }).finally(val=>{
+        //     console.log('finally',val)
+        // })
+
+
+        // let p2=p1.then(val=>{
+        //     console.log('val', val);
+        //     return 123;
+        // }, err =>{
+        //     console.log('err', err)
+        // }).then(val=>{
+        //     console.log('123',val)
+        //     return 'aaa'
+        // })
+        // p2.then(val =>{
+        //     console.log('valaaa', val);
+        //     return 234;
+        // }).then(val=>{
+        //     console.log('234',val)
+        // });
+
+    </script>
+</body>
+</html>

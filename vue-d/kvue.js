@@ -1,12 +1,14 @@
 // kvuejs
 /*
+ 【编译解析】
  1.获取及存储传入的 options
  2.通过传入的 el 值，确定容器
  3.获取容器内容，判断是否有子节点，（递归）
-
- 4.数据劫持
- 5.发布订阅
-
+ 
+ 1.编译解析 通过传入的数据编译解析初始化视图 compile
+ 2.数据劫持 监听数据与属性的变化 observer
+ 3.发布订阅 通知数据更新 watcher Dep
+ 4.实现双绑 
 */
 class Kvue {
     constructor(options){
@@ -15,7 +17,7 @@ class Kvue {
         this._data=options.data
         //数据劫持
         this.observer(this._data);
-        //视图展示
+        //视图编译
         this.compile(options.el);
     }
     compile(el){
@@ -50,6 +52,33 @@ class Kvue {
             }else if(node.nodeType==1){
                 // 标签
                 //console.log(node.nodeType);
+                let attrs=node.attributes;
+                //console.log(attrs);
+
+                Array.from(attrs).forEach(attr=>{
+                    //console.log(attr);
+                    let attrName=attr.name;
+                    let attrValue=attr.value;
+
+                    if(attrName.indexOf('k-')==0){
+                        attrName=attrName.substr(2);
+                        //console.log(attrName);
+                        if(attrName=='model'){
+                            node.value=this._data[attrValue];
+                        }
+                        node.addEventListener('input',e=>{
+                            console.log(e.target.value);
+                            this._data[attrValue]=e.target.value;
+                        })
+
+                        //监听数据更新
+                        new Watcher(this,attrValue,newValue=>{
+                            node.value = newValue;
+                        });
+                    }
+
+                })
+
             }
             // 判断是否还有子节点，递归
             if(node.childNodes.length>0){

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //原生Promise
+    new Promise((resolve, reject) => {
+        setTimeout( _ =>{
+            console.log('Promise');
+            resolve('开课吧')
+        },1000)
+    }).then( val =>{
+        console.log('val',val)
+    })
+
+    // new Promise()
+
+    //下面是一个用Promise对象实现的 Ajax 操作的例子
+    // const getJSON = function(url) {
+    //     const promise = new Promise(function(resolve, reject){
+    //         const handler = function() {
+    //             if (this.readyState !== 4) {
+    //                 return;
+    //             }
+    //             if (this.status === 200) {
+    //                 resolve(this.response);
+    //             } else {
+    //                 reject(new Error(this.statusText));
+    //             }
+    //         };
+    //         const client = new XMLHttpRequest();
+    //         client.open("GET", url);
+    //         client.onreadystatechange = handler;
+    //         client.responseType = "json";
+    //         client.setRequestHeader("Accept", "application/json");
+    //         client.send();
+
+    //     });
+
+    //     return promise;
+    // };
+
+    // getJSON("/posts.json").then(function(json) {
+    //     console.log('Contents: ' + json);
+    // }, function(error) {
+    //     console.error('出错了', error);
+    // });
+</script>
+</html>
