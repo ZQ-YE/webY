@@ -25,13 +25,13 @@ new Promise(
 ```
 
 1. resolve作用是，将Promise对象的状态从“未完成”变为“成功”（即从 pending 变为 resolved），在异步操作成功时调用，并将异步操作的结果，作为参数传递出去。
-promise有三个状态：
-1、pending[待定]初始状态
-2、fulfilled[实现]操作成功
-3、rejected[被否决]操作失败
+`promise有三个状态：`
+`1、pending[待定]初始状态`
+`2、fulfilled[实现]操作成功`
+`3、rejected[被否决]操作失败`
 2. 当promise状态发生改变，就会触发then()里的响应函数处理后续步骤；
-promise状态一经改变，不会再变。
-Promise对象的状态改变，只有两种可能：
-从pending变为fulfilled
-从pending变为rejected。
-这两种情况只要发生，状态就凝固了，不会再变了。
+`promise状态一经改变，不会再变。`
+`Promise对象的状态改变，只有两种可能：`
+`从pending变为fulfilled`
+`从pending变为rejected。`
+`这两种情况只要发生，状态就凝固了，不会再变了。`
