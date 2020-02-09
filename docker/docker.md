@@ -262,13 +262,19 @@ CMD ["pm2-runtime", "start", "process.yml"]
 ## Compose
 + Compose项目是Docker官方的开源项目，负责实现对Docker容器集群的快速编排。
 ```yml
+# 创建文件
+$ vi docker-compose.yml
+# 启动
+$ docker-compose up 
+# 访问 服务器ip:8000
+
 #docker-compose.yml 
 version: '3.1' 
 services:
     mongo:
         image: mongo    
         restart: always    
-        ports:        
+        ports: 
             - 27017:27017  
     mongo-express:    
         image: mongo-express    
