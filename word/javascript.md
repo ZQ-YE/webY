@@ -164,6 +164,13 @@ var brr="123"
 | String() | 转换为字符串并返回 |
 | toString() | 转换为字符串并返回 |
 | toFixed() | 把数字转换为字符串，结果的小数点后有指定位数的数字 |
+| Number() | 字符串转数字 |
+| parseFloat() | 解析一个字符串，并返回一个浮点数 |
+| parseInt() | 解析一个字符串，并返回一个整数 |
+
+### 日期
+| 方法 | 描述 |
+| ---- | ---- |
 | getFullYear() | 从 Date 对象以四位数字返回年份 |
 | getMonth() | 从 Date 对象返回月份 (0 ~ 11) |
 | getDate() | 从 Date 对象返回一个月中的某一天 (1 ~ 31) |
@@ -171,11 +178,9 @@ var brr="123"
 | getHours() | 返回 Date 对象的小时 (0 ~ 23) |
 | getMinutes() | 返回 Date 对象的分钟 (0 ~ 59) |
 | getSeconds() | 返回 Date 对象的秒数 (0 ~ 59) |
-| Number() | 字符串转数字 |
-| parseFloat() | 解析一个字符串，并返回一个浮点数 |
-| parseInt() | 解析一个字符串，并返回一个整数 |
 ```
 获取时间：new Date()
+设置日期：myDate.setDate(myDate.getDate()+5);  get > set
 ```
 
 ## 正则
@@ -206,7 +211,7 @@ var brr="123"
 | n+ | 匹配任何包含至少一个 n 的字符串 |
 | n* | 匹配任何包含零个或多个 n 的字符串 |
 | n? | 匹配任何包含零个或一个 n 的字符串 |
-`使用：reg.test()`
+`使用：reg.test() => true|false   ||  reg.exec() => 输出匹配字符`
 
 ## JSON
 | 函数 | 描述 |
@@ -297,6 +302,88 @@ element.appendChild(para);
 // 大部分浏览器的 querySelectorAll() 返回 NodeList 对象。
 var myNodeList = document.querySelectorAll("p");
 ```
+
+## 对象构造器(constructor)
+```js
+function person(firstname,lastname,age,eyecolor)
+{
+    this.firstname=firstname;
+    this.lastname=lastname;
+    this.age=age;
+    this.eyecolor=eyecolor;
+}
+
+var myFather=new person("John","Doe",50,"blue");
+var myMother=new person("Sally","Rally",48,"green");
+```
+
+## prototype(原型对象) 
+### 继承、添加属性和方法
+```js
+// 所有的 JavaScript 对象都会从一个 prototype（原型对象）中继承属性和方法
+// Date 对象, Array 对象, 以及 Person 对象从 Object.prototype 继承
+
+// 继承属性  
+// 给对象的构造函数添加新的属性
+function Person(first, last, age, eyecolor) {
+  this.firstName = first;
+  this.lastName = last;
+  this.age = age;
+  this.eyeColor = eyecolor;
+}
+Person.prototype.nationality = "English";
+
+// 继承方法
+// 给对象的构造函数添加新的方法
+function Person(first, last, age, eyecolor) {
+  this.firstName = first;
+  this.lastName = last;
+  this.age = age;
+  this.eyeColor = eyecolor;
+}
+Person.prototype.name = function() {
+  return this.firstName + " " + this.lastName;
+};
+```
+
+## 数组
+| 方法 | 描述 |
+| ---- | ---- |
+| concat() | 合并数组 *新 |
+| join() | 用数组的元素组成字符串 *新 |
+| pop() | 删除数组的最后一个元素 *改 |
+| push() | 在数组的末尾添加新的元素 *改 |
+| reverse() | 数组中的元素顺序反转排序 *改 |
+| shift() | 删除数组的第一个元素 *改 |
+| unshift() | 在数组的开头添加新元素（IE8） *改 |
+| slice() | 截取数组的元素 *新 |
+| sort() | 截取数组的元素 *改 |
+| splice() | 在数组的指定位置添加元素 *改 |
+| toString() | 数组转字符串 *新 |
+
+```js
+// 字母排序
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+	fruits.sort();
+
+// 数字排序
+var points = [40,100,1,5,25,10];
+	points.sort(function(a,b){return a-b}); // 升序
+    // points.sort(function(a,b){return b-a}); //降序
+
+// ES6
+// 去重
+[...new Set([2,1,2,2,2,167,4,3,32,2,1])]
+``` 
+
+## 算数
++ random() 返回 0 - 1 之间的随机数
++ max() 返回给定数中的较大数
++ min() 返回给定数中的较小数
+
+# 浏览器 BOM
+
+~~~
 
 
 
