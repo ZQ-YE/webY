@@ -79,6 +79,8 @@ var brr="123"
 | onmouseover | 用户在一个HTML元素上移动鼠标 |
 | onmouseout | 用户从一个HTML元素上移开鼠标 |
 | onkeydown | 用户按下键盘按键 |
+| onblur | 失去焦点 |
+| onfocus | 获取焦点 |
 | onload | 浏览器已完成页面的加载 |
 | onscroll | 当文档被滚动时发生的事件 |
 | onselect | 用户选取文本时触发 ( input 和 textarea) |
@@ -176,11 +178,125 @@ var brr="123"
 获取时间：new Date()
 ```
 
+## 正则
+```
+/正则表达式主体/修饰符(可选)
+```
+### 修饰符
+| 修饰符 | 描述 |
+| ---- | ---- |
+| i | 执行对大小写不敏感的匹配 |
+| g | 执行全局匹配 |
+| m | 执行多行匹配 |
+### 模式
+| 表达式 | 描述 |
+| ---- | ---- |
+| [abc] | 查找方括号之间的任何字符 |
+| [0-9] | 查找任何从 0 至 9 的数字 |
+| (x|y) | 查找任何以 | 分隔的选项 |
 
+| 元字符 | 描述 |
+| ---- | ---- |
+| \d | 查找数字 |
+| \s | 查找空白字符 |
+| \b | 匹配单词边界 |
 
+| 量词 | 描述 |
+| ---- | ---- |
+| n+ | 匹配任何包含至少一个 n 的字符串 |
+| n* | 匹配任何包含零个或多个 n 的字符串 |
+| n? | 匹配任何包含零个或一个 n 的字符串 |
+`使用：reg.test()`
 
+## JSON
+| 函数 | 描述 |
+| ---- | ---- |
+| JSON.parse() | 用于将一个 JSON 字符串转换为 JavaScript 对象 |
+| JSON.stringify()  | 用于将 JavaScript 值转换为 JSON 字符串 |
 
+## 函数
+### 参数
+```js
+// arguments 为传入的参数数组
+function findMax() {
+    var argu = arguments;
+}
+```
+### 构造函数
+```js
+// 构造函数:
+function myFunction(arg1, arg2) {
+    this.firstName = arg1;
+    this.lastName  = arg2;
+}
+// 创建一个新对象
+var x = new myFunction("John","Doe");
+x.firstName;  // 返回 "John"
+```
+### 闭包
+```js
+// 内嵌函数
+function add() {
+    var counter = 0;
+    function plus() {counter += 1;}
+    plus();    
+    return counter; 
+}
 
+// 闭包 （自运行）
+var add = (function () {
+    var counter = 0;
+    return function () {return counter += 1;}
+})();
+//计数器受匿名函数的作用域保护，只能通过 add 方法修改
+```
+
+## JS HTML
+### DOM
++ getElementById、getElementsByTagName、getElemensByClassName 
++ 写入内容（innerHTML）：document.getElementById(id).innerHTML=新的 HTML
++ 属性(src...)：document.getElementById(id).attribute=新属性值
++ 样式(style.color)：document.getElementById(id).style.property=新样式
+### EventListener
+``` 
+语法 
+addEventListener: element.addEventListener(event, function, useCapture);
+removeEventListener: element.removeEventListener("mousemove", myFunction);
+```
+```js
+// click、mouseover、mouseout
+document.getElementById("myBtn").addEventListener("click", displayDate);
+
+// resize
+window.addEventListener("resize", function(){
+    document.getElementById("demo").innerHTML = sometext;
+});
+
+// 兼容
+var x = document.getElementById("myBtn");
+if (x.addEventListener) {                    // 所有主流浏览器，除了 IE 8 及更早版本
+    x.addEventListener("click", myFunction);
+} else if (x.attachEvent) {                  // IE 8 及更早版本
+    x.attachEvent("onclick", myFunction);
+    //element.detachEvent(event, function); 移除
+}
+```
+### DOM 元素（节点）
+```js
+// createElement、createTextNode、appendChild(添加在尾部)、insertBefore(添加在头部)、removeChild(移除)、parentNode(父节点)、replaceChild(替换)
+var para = document.createElement("p");
+var node = document.createTextNode("这是一个新的段落。");
+para.appendChild(node);
+ 
+var element = document.getElementById("div1");
+element.appendChild(para);
+```
+### NodeList
+```js
+// 所有浏览器的 childNodes 属性返回的是 NodeList 对象。
+// 大部分浏览器的 querySelectorAll() 返回 NodeList 对象。
+var myNodeList = document.querySelectorAll("p");
+```
 
 
 
