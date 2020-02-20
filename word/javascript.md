@@ -36,7 +36,7 @@ len=3
 ###### 语句标识符
 | 语句 | 描述 |
 | -------- | ----- |
-| break | 用于跳出循环。 | 
+| break | 用于跳出循环。 |
 | catch | 语句块，在 try 语句块执行出错时执行 catch 语句块。 |
 | continue | 跳过循环中的一个迭代。 |
 | do ... while | 执行一个语句块，在条件语句为 true 时继续执行该语句块。 |
@@ -183,7 +183,25 @@ var brr="123"
 设置日期：myDate.setDate(myDate.getDate()+5);  get > set
 ```
 
+## Math 对象
+
+Math 对象用于执行数学任务
+
+| 方法       | 描述                  |
+| ---------- | --------------------- |
+| abs(x)     | 返回 x 的绝对值       |
+| ceil(x)    | 上舍入                |
+| floor(x)   | 下舍入                |
+| round(x)   | 四舍五入              |
+| random()   | 返回 0~1 之间的随机数 |
+| pow(x,y)   | x 的 y 次幂           |
+| max(x,y,z) | 返回最大值            |
+| min(x,y,z) | 返回最小值            |
+
+`还有一些其他的数学计算方法：cos()、sin()、tan()、log()、sqrt()等`
+
 ## 正则
+
 ```
 /正则表达式主体/修饰符(可选)
 ```
@@ -198,7 +216,7 @@ var brr="123"
 | ---- | ---- |
 | [abc] | 查找方括号之间的任何字符 |
 | [0-9] | 查找任何从 0 至 9 的数字 |
-| (x|y) | 查找任何以 | 分隔的选项 |
+| (x\|y) | 查找任何以 \| 分隔的选项 |
 
 | 元字符 | 描述 |
 | ---- | ---- |
@@ -374,19 +392,148 @@ var points = [40,100,1,5,25,10];
 // ES6
 // 去重
 [...new Set([2,1,2,2,2,167,4,3,32,2,1])]
-``` 
-
-## 算数
-+ random() 返回 0 - 1 之间的随机数
-+ max() 返回给定数中的较大数
-+ min() 返回给定数中的较小数
+```
 
 # 浏览器 BOM
 
-~~~
+### window-浏览器对象模型
 
+有三种方法能够确定浏览器窗口的尺寸。
 
+对于Internet Explorer、Chrome、Firefox、Opera 以及 Safari：
 
+- window.innerHeight - 浏览器窗口的内部高度(包括滚动条)
+- window.innerWidth - 浏览器窗口的内部宽度(包括滚动条)
 
+对于 Internet Explorer 8、7、6、5：
 
+- document.documentElement.clientHeight
+- document.documentElement.clientWidth
+
+或者
+
+- document.body.clientHeight
+- document.body.clientWidth
+
+ 实用的 JavaScript 方案（涵盖所有浏览器）： 
+
+```javascript
+var w=window.innerWidth
+|| document.documentElement.clientWidth
+|| document.body.clientWidth;
+
+var h=window.innerHeight
+|| document.documentElement.clientHeight
+|| document.body.clientHeight;
+```
+
+#### window 方法
+
++ window.open() - 打开新窗口
++ window.close() - 关闭当前窗口
++ window.moveTo() - 移动当前窗口
++ window.resizeTo() = 调整当前窗口的尺寸
+
+### Screen
+
++ screen.availHeight - 屏幕可用高度
++ screen.availWidth - 屏幕可用宽度
+
+### Location
+
+window.location 对象用于获得当前页面的地址 (URL)，并把浏览器重定向到新的页面 
+
+| 属性     | 描述                                      |
+| -------- | ----------------------------------------- |
+| hostname | 返回 web 主机的域名                       |
+| pathname | 返回当前页面的路径和文件名                |
+| port     | 返回 web 主机的端口（80或443）            |
+| protocol | 返回所使用的 web 协议 （http: 或 https:） |
+| href     | 返回当前页面的 URL                        |
+
+### History
+
+window.history 对象包含浏览器的历史
+
+| 属性/方法 | 描述                     |
+| --------- | ------------------------ |
+| back      | 与浏览器的后退相同       |
+| forward   | 与浏览器的前进相同       |
+| go()      | 前进go(1) 或 后退 go(-1) |
+
+### Navigator
+
+window.navigatr 对象包含有关访问者浏览器的信息
+
+| 属性           | 描述         |
+| -------------- | ------------ |
+| appCodeName    | 浏览器代号   |
+| appName        | 浏览器名称   |
+| appVersion     | 浏览器版本   |
+| cookieEnabled  | 启用 Cookies |
+| platform       | 硬件平台     |
+| userAgent      | 用户代理     |
+| systemLanguage | 用户代理语言 |
+
+### 弹窗
+
+| 方法      | 描述   |
+| --------- | ------ |
+| alert()   | 警告框 |
+| confirm() | 确认框 |
+| prompt()  | 提示框 |
+
+### 计时事件
+
+| 方法            | 描述                     |
+| --------------- | ------------------------ |
+| setInterval()   | 间隔指定的毫秒数不停执行 |
+| setTimeout()    | 指定的毫秒数后执行       |
+| clearInterval() | 停止间隔不停执行         |
+| clearTimeout()  | 停止指定毫秒执行         |
+
+### Cookie
+
+Cookie 用于存储 web 页面用户信息
+
+```js
+var x=document.cookie // 获取 cookie
+document.cookie="username=foo;password=123" //修改 cookie
+
+// 获取 cookie 值
+function setCookie(cname,cvalue,exdays)
+{
+  var d = new Date();
+  d.setTime(d.getTime()+(exdays*24*60*60*1000));
+  var expires = "expires="+d.toGMTString();
+  document.cookie = cname + "=" + cvalue + "; " + expires;
+}
+
+// 获取 cookie 值
+function getCookie(cname)
+{
+  var name = cname + "=";
+  var ca = document.cookie.split(';');
+  for(var i=0; i<ca.length; i++) {
+    var c = ca[i].trim();
+    if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+  }
+  return "";
+}
+
+// 检测 cookie 值
+function checkCookie()
+{
+  var username=getCookie("username");
+  if (username!=""){
+    alert("Welcome again " + username);
+  }else {
+    username = prompt("Please enter your name:","");
+    if (username!="" && username!=null){
+      setCookie("username",username,365);
+    }
+  }
+}
+
+```
 
