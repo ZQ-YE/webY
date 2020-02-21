@@ -87,6 +87,20 @@ var brr="123"
 | onsubmit | 表单提交时触发 |
 | oncopy | 该事件在用户拷贝元素内容时触发 |
 | ondrag | 该事件在元素正在拖动时触发 |
+| element.appendChild() | 添加一个新的子元素 |
+| element.attributes | 返回一个元素的属性数组 |
+| element.children | 返回元素的子元素的集合 |
+| element.className | 设置或返回元素的class属性 |
+| element.clientHeight | 在页面上返回内容的可视高度（不包括边框，边距或滚动跳） |
+| element.clientWidth | 在页面上返回内容的可视宽度（不包括边框，边距或滚动条） |
+| element.focus() | 设置文档或元素获取焦点 |
+| element.offsetHeight | 返回元素的高度，包括边框和填充，但不是边距 |
+| element.offsetWidth | 返回元素的宽度，包括边框和填充，但不是边距 |
+| element.offsetTop | 返回当前元素的相对垂直偏移位置的偏移容器 |
+| element.scrollHeight | 返回整个元素的高度（包括带滚动条的隐藏的地方） |
+| element.scrollLeft | 返回当前视图中的实际元素的左边缘和左边缘之间的距离（偏移值） |
+| element.scrollTop | 返回当前视图中的实际元素的顶部边缘和顶部边缘之间的距离 |
+| element.scrollWidth | 返回元素的整个宽度（包括带滚动条的隐藏的地方） |
 ###### 属性
 | 属性 | 描述 |
 | ---- | ---- |
@@ -537,3 +551,4 @@ function checkCookie()
 
 ```
 
+​	
