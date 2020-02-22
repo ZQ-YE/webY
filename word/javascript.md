@@ -101,6 +101,8 @@ var brr="123"
 | element.scrollLeft | 返回当前视图中的实际元素的左边缘和左边缘之间的距离（偏移值） |
 | element.scrollTop | 返回当前视图中的实际元素的顶部边缘和顶部边缘之间的距离 |
 | element.scrollWidth | 返回元素的整个宽度（包括带滚动条的隐藏的地方） |
+| element.querySelector() | 返回匹配指定css选择器元素的第一个子元素 |
+| element.querySelectorAll() | 返回匹配指定css选择器元素的所有子元素节点列表 |
 ###### 属性
 | 属性 | 描述 |
 | ---- | ---- |
